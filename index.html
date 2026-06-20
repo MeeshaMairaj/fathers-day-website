@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Father's Day, Baba!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #1e3c72;
+            --secondary: #2a5298;
+            --accent: #f39c12;
+            --text-dark: #2c3e50;
+            --bg-light: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* --- Hero Section --- */
+        header {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.9), rgba(42, 82, 152, 0.9)), url('image1.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            animation: fadeInDown 1.5s ease;
+        }
+
+        header p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            font-weight: 300;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            font-size: 1rem;
+            animation: bounce 2s infinite;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* --- Memory Lane (Interactive Gallery) --- */
+        .gallery-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        /* --- Dynamic Message Board --- */
+        .message-section {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .message-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .handwritten-note {
+            font-family: 'Caveat', cursive;
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            min-height: 80px;
+        }
+
+        .btn-refresh {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+        }
+
+        .btn-refresh:hover {
+            background: #e67e22;
+            transform: scale(1.05);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #111;
+            color: #777;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9rem;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            header p { font-size: 1.1rem; }
+            .handwritten-note { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Happy Father's Day!</h1>
+        <p>To the man who gives us the world, leads us with strength, and fills our lives with beautiful memories.</p>
+        <a href="#gallery" class="scroll-down">✨ See Our Memories Below ↓</a>
+    </header>
+
+    <section class="gallery-section" id="gallery">
+        <h2 class="section-title">A Journey of Love & Family</h2>
+        <div class="grid">
+            
+            <div class="card">
+                <img src="1.jpg" alt="Beautiful Family Mountains Trip">
+                <div class="card-content">
+                    <h3>The Anchor of Our Family</h3>
+                    <p>No matter where we travel or how high the mountains are, your guidance keeps us grounded and together.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="2.jpg" alt="Selfie with Kids">
+                <div class="card-content">
+                    <h3>The Joy Maker</h3>
+                    <p>Capturing the candid, happy, everyday moments. Thank you for always matching our energy and putting smiles on our faces.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="3.jpg" alt="Father Daughter Outing">
+                <div class="card-content">
+                    <h3>Our Safe Haven</h3>
+                    <p>Celebrating the quiet moments, celebrations, and life lessons over regular days out. You are our biggest blessing.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="message-section">
+        <div class="message-box">
+            <h2>Reasons We Love You...</h2>
+            <div class="handwritten-note" id="dynamicMessage">Loading a sweet thought...</div>
+            <p style="opacity: 0.8; font-size: 0.9rem;">Click below to see another reason why you're the absolute best.</p>
+            <button class="btn-refresh" onclick="changeMessage()">Next Reason ❤️</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>Made with love for the Best Dad in the World. Happy Father's Day!</p>
+    </footer>
+
+    <script>
+        // Array of dynamic messages that change on button click
+        const messages = [
+            "Thank you for working so hard every day for us.",
+            "Your smile brightens up the entire room!",
+            "Thank you for being the perfect role model.",
+            "You make every trip and outing an unforgettable adventure.",
+            "We are so proud to call you our Father.",
+            "Thank you for your infinite patience and endless love."
+        ];
+
+        let currentIdx = 0;
+
+        function changeMessage() {
+            const messageEl = document.getElementById('dynamicMessage');
+            
+            // Fade out effect
+            messageEl.style.opacity = 0;
+            
+            setTimeout(() => {
+                // Cycle to the next message smoothly
+                currentIdx = (currentIdx + 1) % messages.length;
+                messageEl.innerText = `"${messages[currentIdx]}"`;
+                // Fade back in
+                messageEl.style.opacity = 1;
+                messageEl.style.transition = "opacity 0.5s ease";
+            }, 300);
+        }
+
+        // Initialize the first message on load
+        window.onload = function() {
+            document.getElementById('dynamicMessage').innerText = `"${messages[0]}"`;
+        }
+    </script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Father's Day ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);
+color:white;
+overflow-x:hidden;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+/* Floating Background */
+
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+overflow:hidden;
+z-index:-1;
+}
+
+.circle{
+position:absolute;
+border-radius:50%;
+background:rgba(255,255,255,0.08);
+animation:float 12s infinite linear;
+}
+
+.circle:nth-child(1){
+width:180px;
+height:180px;
+left:10%;
+top:70%;
+}
+
+.circle:nth-child(2){
+width:100px;
+height:100px;
+left:80%;
+top:10%;
+animation-duration:15s;
+}
+
+.circle:nth-child(3){
+width:140px;
+height:140px;
+left:60%;
+top:80%;
+animation-duration:18s;
+}
+
+@keyframes float{
+0%{
+transform:translateY(0px);
+}
+50%{
+transform:translateY(-60px);
+}
+100%{
+transform:translateY(0px);
+}
+}
+
+/* Hero Section */
+
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero h1{
+font-family:'Playfair Display',serif;
+font-size:4rem;
+margin-bottom:20px;
+background:linear-gradient(90deg,#fbbf24,#f59e0b,#fde68a);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+font-size:1.2rem;
+max-width:700px;
+line-height:1.8;
+opacity:0.9;
+}
+
+.btn{
+margin-top:35px;
+padding:14px 30px;
+background:linear-gradient(45deg,#f59e0b,#fbbf24);
+color:black;
+font-weight:600;
+border:none;
+border-radius:40px;
+cursor:pointer;
+font-size:1rem;
+transition:.3s;
+text-decoration:none;
+}
+
+.btn:hover{
+transform:translateY(-4px);
+}
+
+/* Section */
+
+section{
+padding:100px 10%;
+}
+
+.section-title{
+font-family:'Playfair Display',serif;
+font-size:3rem;
+text-align:center;
+margin-bottom:60px;
+color:#fbbf24;
+}
+
+/* Gallery */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.gallery img{
+width:100%;
+height:350px;
+object-fit:cover;
+border-radius:20px;
+transition:.4s;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+/* Message Card */
+
+.message{
+max-width:900px;
+margin:auto;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+padding:40px;
+border-radius:25px;
+line-height:2;
+font-size:1.1rem;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Timeline */
+
+.timeline{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+padding:25px;
+border-radius:20px;
+text-align:center;
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h3{
+color:#fbbf24;
+margin-bottom:10px;
+}
+
+/* Footer */
+
+footer{
+text-align:center;
+padding:40px;
+opacity:0.8;
+}
+
+footer span{
+color:#fbbf24;
+font-weight:600;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:2.8rem;
+}
+
+.section-title{
+font-size:2.2rem;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg">
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+</div>
+
+HERO -->
+
+<!-- <section class="hero">
+
+<h1>Happy Father's Day ❤️</h1>
+
+<p>
+To the man who taught me strength, kindness, and perseverance.
+This little website is dedicated to you, Dad.
+Thank you for every sacrifice, every lesson, and every moment of love.
+</p>
+
+<a href="#gallery" class="btn">View Memories</a>
+
+</section>
+
+GALLERY
+
+<section id="gallery">
+
+<h2 class="section-title">Our Memories 📸</h2>
+
+<div class="gallery">
+
+<img src="1.jpg" alt="Dad Photo 1">
+
+<img src="2.jpg" alt="Dad Photo 2">
+
+<img src="3.jpg" alt="Dad Photo 3">
+
+</div>
+
+</section>
+
+MESSAGE
+
+<section>
+
+<h2 class="section-title">A Letter To Dad 💌</h2>
+
+<div class="message">
+
+Dear Dad,
+
+There aren't enough words to express how grateful I am for everything you've done for me.
+
+You've always been my protector, my guide, and my biggest supporter. Every sacrifice you've made and every lesson you've taught has helped shape who I am today.
+
+Thank you for believing in me when I doubted myself and for always being there no matter what.
+
+I hope this Father's Day reminds you how deeply loved and appreciated you are.
+
+Happy Father's Day ❤️
+
+Love,
+<br><br>
+<strong>Your Child</strong>
+
+</div>
+
+</section>
+
+TIMELINE -->
+
+<!-- <section>
+
+<h2 class="section-title">Why You're The Best ⭐</h2>
+
+<div class="timeline">
+
+<div class="card">
+<h3>Strength</h3>
+<p>You always stand strong for our family.</p>
+</div>
+
+<div class="card">
+<h3>Guidance</h3>
+<p>Your advice has helped me through every challenge.</p>
+</div>
+
+<div class="card">
+<h3>Love</h3>
+<p>You show unconditional love every single day.</p>
+</div>
+
+<div class="card">
+<h3>Inspiration</h3>
+<p>You inspire me to become a better person.</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+Made with ❤️ for <span>My Amazing Dad</span>
+
+</footer>
+
+</body>
+</html> -->
